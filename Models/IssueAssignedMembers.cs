@@ -1,0 +1,14 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace open_tracker.Models
+{
+    public class IssueAssignedMembers
+    {
+        [Key]
+        public int IssueAssignedMemberId { get; set; }
+        [Required]
+        public int IssueId { get; set; }
+        [Required]
+        public int UserId { get; set; }
+    }
+}
