@@ -5,11 +5,11 @@ namespace open_tracker.Models
     public class ProjectMembers
     {
         [Key]
-        public int ProjectMemberId { get; set; }
+        public int Id { get; set; }
         [Required]
         public int ProjectId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public ApplicationUser ProjectMemberId { get; set; }
         [Required]
         public bool IsCreator { get; set; }
     }

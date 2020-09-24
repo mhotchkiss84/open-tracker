@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace open_tracker.Data
@@ -12,5 +9,11 @@ namespace open_tracker.Data
             : base(options)
         {
         }
+        public DbSet<open_tracker.Models.Projects> Projects { get; set; }
+        public DbSet<open_tracker.Models.ProjectMembers> ProjectMembers { get; set; }
+        public DbSet<open_tracker.Models.Priority> Priority { get; set; }
+        public DbSet<open_tracker.Models.Issues> Issues { get; set; }
+        public DbSet<open_tracker.Models.IssueComments> IssueComments { get; set; }
+        public DbSet<open_tracker.Models.IssueAssignedMembers> IssueAssignedMembers { get; set; }
     }
 }
