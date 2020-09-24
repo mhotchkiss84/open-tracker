@@ -9,6 +9,7 @@ namespace open_tracker.Models
         [Required]
         public int IssueId { get; set; }
         [Required]
-        public ApplicationUser IssueAssignedMemberId { get; set; }
+        public ApplicationUser AssignedMember { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace open_tracker.Models
         public int ProjectId { get; set; }
         [Required]
         public ApplicationUser Creator { get; set; }
+        public string UserId { get; set; }
         [Required]
         public int PriorityId { get; set; }
         [Required]
@@ -21,7 +22,5 @@ namespace open_tracker.Models
         public bool IsReviewed { get; set; }
         public virtual ICollection<IssueComments> IssueComments { get; set; }
         public virtual ICollection<IssueAssignedMembers> IssueAssignedMembers { get; set; }
-        //TODO: Ask to see if this should be in Priority
-        //public virtual ICollection<Priority> Priority { get; set; }
     }
 }

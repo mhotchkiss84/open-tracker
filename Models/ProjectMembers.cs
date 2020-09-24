@@ -9,8 +9,9 @@ namespace open_tracker.Models
         [Required]
         public int ProjectId { get; set; }
         [Required]
-        public ApplicationUser ProjectMemberId { get; set; }
+        public ApplicationUser User { get; set; }
         [Required]
+        public string ProjectMemberId { get; set; }
         public bool IsCreator { get; set; }
     }
 }
