@@ -1,6 +1,4 @@
-using System;
-
-namespace open_tracker.Models
+﻿namespace open_tracker.Models
 {
     public class ErrorViewModel
     {

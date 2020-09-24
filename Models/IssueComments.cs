@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace open_tracker.Models
 {
@@ -13,8 +9,9 @@ namespace open_tracker.Models
         [Required]
         public int IssueId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
         [Required]
+        public string UserId { get; set; }
         public string Comment { get; set; }
     }
 }

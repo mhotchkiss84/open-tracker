@@ -9,5 +9,6 @@ namespace open_tracker.Models
         public int PriorityId { get; set; }
         [Required]
         public string PriorityName { get; set; }
+        //public virtual ICollection<Issues> Issues { get; set; }
     }
 }

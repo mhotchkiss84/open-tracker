@@ -5,10 +5,11 @@ namespace open_tracker.Models
     public class IssueAssignedMembers
     {
         [Key]
-        public int IssueAssignedMemberId { get; set; }
+        public int Id { get; set; }
         [Required]
         public int IssueId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public ApplicationUser AssignedMember { get; set; }
+        public string UserId { get; set; }
     }
 }
