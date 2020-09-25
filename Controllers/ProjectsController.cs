@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,12 +14,13 @@ namespace open_tracker.Controllers
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ProjectsController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ProjectsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-
+     private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Projects
         public async Task<IActionResult> Index()
         {
@@ -58,7 +60,16 @@ namespace open_tracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await GetCurrentUserAsync();
                 _context.Add(projects);
+                await _context.SaveChangesAsync();
+                ProjectMembers projectmembers = new ProjectMembers() {
+                    ProjectId = projects.ProjectId,
+                    ProjectMemberId = user.Id,
+                    IsCreator = true,
+                    User = user
+                };
+                _context.Add(projectmembers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
