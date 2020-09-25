@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Projects</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create A New Project</a>
 </p>
 <table class="table">
     <thead>
@@ -34,7 +34,8 @@
                 @Html.DisplayFor(modelItem => item.Details)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Repo)
+                <a href=" @Html.DisplayFor(modelItem => item.Repo)"> @Html.DisplayFor(modelItem => item.Repo)</a>
+               
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
