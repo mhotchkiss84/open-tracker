@@ -31,3 +31,6 @@ Currently this application is being developed with C#, .Net, Identity framework,
 
 # Planning documentation
 - [Current ERD](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing)
+- [Current Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
+- [Capstone Proposal](https://docs.google.com/document/d/1D1zn7PzIR4bl0MjfNbDkvi7mycvqj0HJe0leiobTUC8/edit?usp=sharing)
+
