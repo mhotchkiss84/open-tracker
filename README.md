@@ -28,3 +28,6 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - A live chat system for projects
 - Add project planning to the site i.e. ERD support, Google Docs support, mockups, etc. 
 - Add sprint system
+
+# Planning documentation
+- [Current ERD](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing)
