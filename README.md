@@ -6,7 +6,7 @@ This application is being made to allow users to be able to have an all in one p
 
 Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. I have plans later down the line to switch over to React for the front end and use Django for the backend. I originally wanted to start the project this way but my school has limited me to using the current tech stack. The reason why I will be switching to React is for a better user exerpeince. One example is during the sprint phase users will be able to drag and drop tickets to different areas of the sprint board. 
 
-# Capstone MVP (2 weeks)
+# Capstone MVP (Minimum Viable Product with a 2 week deadline)
 - User can create an account and login
 - Once the user is logged in they will be able to create a new project
 - Project Managers can assign other users to projects
@@ -34,8 +34,10 @@ Currently this application is being developed with C#, .Net, Identity framework,
 [Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
 
 # How to install
+This section will be updated when the project meets MVP (minimum viable product)
 
 # How to use
+This section will be updated when the project meets MVP (minimum viable product)
 
 # Currently in development
 - Add TOC (table of contents) to the readme
