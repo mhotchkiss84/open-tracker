@@ -30,6 +30,18 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - Add sprint system
 
 # Planning documentation
-[Current ERD](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing) <br />
+[Current ERD (Entity Relationship Diagram)](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing) <br />
 [Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
 
+# How to install
+
+# How to use
+
+# Currently in development
+- Add TOC (table of contents) to the readme
+- Add a user to the projects team
+
+# Updates
+- Updated Readme
+- Create a project functionality finished
+- Login/Register functionality finished
