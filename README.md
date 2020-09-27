@@ -1,4 +1,4 @@
-# open-tracker
+# Open Tracker
 This is my Server side capstone for my Full Stack .NET cohort. 
 
 # Overview
