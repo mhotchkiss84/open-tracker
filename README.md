@@ -30,6 +30,6 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - Add sprint system
 
 # Planning documentation
-- [Current ERD](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing)
-- [Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
+[Current ERD](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing)
+[Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
 
