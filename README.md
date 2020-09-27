@@ -15,3 +15,16 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - Project Managers will be able to assign another user or self to the bug/issue tickets
 - The ticket will be removed from the issue section of the project view
 - Assigned members or project managers can edit an issue
+
+# Stretch Goals / Future plans
+- Project users can comment on an issue
+- When a user completes the ticket or fixes the issue they can mark it as complete.
+- Once a ticket has been marked as complete the user in charge of the project can review and confirm that the issue is fixed. 
+- Users can view resolved tickets
+- Users can chat in real time with project members
+- Private messaging
+- Issue tickets can be linked/related to current or previous tickets
+- Notifications  of when a user is assigned an issue or receives a message.
+- A live chat system for projects
+- Add project planning to the site i.e. ERD support, Google Docs support, mockups, etc. 
+- Add sprint system
