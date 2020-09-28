@@ -1,0 +1,49 @@
+﻿@model IEnumerable<open_tracker.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<h1>Add Members</h1>
+<div >
+<form class="form-inline mt-4 mb-3" id="member-search-bar">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search users" aria-label="Search">
+    <button class="btn btn-primary btn-rounded btn-sm my-0" type="submit">Search</button>
+</form>
+    </div>
+
+<h4>All users </h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="">@Html.DisplayFor(modelItem => item.FirstName)</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="">@Html.DisplayFor(modelItem => item.LastName)</a>
+                </td>
+                <td>
+                    |
+                    <a asp-action="Delete" asp-route-id="">Add</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="ProjectMembers" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-primary btn-rounded btn-sm ml-2">Back</a>
+</div>

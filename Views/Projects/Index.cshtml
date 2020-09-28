@@ -6,9 +6,8 @@
 
 <h1>Projects</h1>
 
-<p>
-    <a asp-action="Create">Create A New Project</a>
-</p>
+<a asp-action="Create" class="btn btn-success btn-rounded btn-sm mt-3 mb-3">Create A New Project</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -36,10 +35,6 @@
             <td>
                 <a href=" @Html.DisplayFor(modelItem => item.Repo)"> @Html.DisplayFor(modelItem => item.Repo)</a>
                
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
             </td>
         </tr>
 }

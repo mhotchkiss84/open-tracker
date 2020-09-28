@@ -4,18 +4,11 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Html.DisplayFor(model => model.Name)</h1>
 
 <div>
-    <h4>Projects</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Details)
         </dt>
@@ -28,14 +21,21 @@
         <dd class="col-sm-10">
             <a href="@Html.DisplayFor(model => model.Repo)"> @Html.DisplayFor(model => model.Repo)</a>
         </dd>
+        <dt class="col-sm-2">
+            <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId">Project Members</a>
+        </dt>
         <dd class=" col-sm-10">
-        <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId">Members</a>
         </dd>
-
+        <dt>
     </dl>
-   
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |
-    <a asp-action="Index">Back</a>
+    <a asp-action="Index" class="btn btn-primary btn-rounded btn-sm ml-1 mt-1">Back</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-success btn-rounded btn-sm mt-1">Edit</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-danger btn-rounded btn-sm mt-1">Delete</a>
+    @*<td>
+        <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+    </td>*@
 </div>

@@ -178,14 +178,22 @@ namespace open_tracker.Controllers
             //    .FirstOrDefaultAsync(pm => pm.User == user && m.Id == null);
 
 
-
-            if (ProjectMembers == null)
-            {
-                //TODO: Create and change to projects own error view
-                return View("OrderNotFoundErrorView");
-            }
+            //TODO: Add this later for error handling. All projects should have one member since the project creator is automatically assigned to the project
+            //if (ProjectMembers == null)
+            //{
+            //    //TODO: Create and change to projects own error view
+            //    return View("OrderNotFoundErrorView");
+            //}
 
             return View(ProjectMembers);
         }
+        //GET: Get a list of all users so the user can add members
+        //TODO: Filter so that members already on the project are not shown?
+        public async Task<IActionResult> AddMembers(int? id)
+        {
+            return View(await _context.Users.ToListAsync());
+            //return View(Members);
+        }
+
     }
     }
