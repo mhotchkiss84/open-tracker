@@ -10,26 +10,30 @@
     <h4>Projects</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Details)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Details)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Repo)
         </dt>
         <dd class="col-sm-10">
             <a href="@Html.DisplayFor(model => model.Repo)"> @Html.DisplayFor(model => model.Repo)</a>
         </dd>
+        <dd class=" col-sm-10">
+        <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId">Members</a>
+        </dd>
+
     </dl>
-    <p>Add Members</p>
+   
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |

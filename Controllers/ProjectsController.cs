@@ -160,5 +160,32 @@ namespace open_tracker.Controllers
         {
             return _context.Projects.Any(e => e.ProjectId == id);
         }
+        //GET: All Assigned Members
+        public async Task<IActionResult> ProjectMembers(int? id)
+        {
+            var user = await GetCurrentUserAsync();
+
+
+            //var applicationDbContext = _context.Order.Include(o => o.PaymentType).Include(o => o.User).Where(o => o.User == user);
+
+            var ProjectMembers = _context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == id);
+
+            //var ProjectMembers = await _context.ProjectMembers
+            //    .Include(pm => pm.ProjectId)
+            //    .Include(pm => pm.ProjectMemberId)
+            //    .Include(pm => pm.User)
+            //    .ThenInclude(m => m.User)
+            //    .FirstOrDefaultAsync(pm => pm.User == user && m.Id == null);
+
+
+
+            if (ProjectMembers == null)
+            {
+                //TODO: Create and change to projects own error view
+                return View("OrderNotFoundErrorView");
+            }
+
+            return View(ProjectMembers);
+        }
     }
-}
+    }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<open_tracker.Models.ProjectMembers>
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<h1>Project Members</h1>
+
+<p>
+    <a asp-action="Create">Add a new member</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.LastName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.User.FirstName)</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.User.LastName)</a>
+            </td>
+            <td>|
+                <a asp-action="Delete" asp-route-id="@item.ProjectId">Remove</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
