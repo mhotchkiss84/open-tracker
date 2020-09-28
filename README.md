@@ -6,7 +6,7 @@ This application is being made to allow users to be able to have an all in one p
 
 Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. I have plans later down the line to switch over to React for the front end and use Django for the backend. I originally wanted to start the project this way but my school has limited me to using the current tech stack. The reason why I will be switching to React is for a better user exerpeince. One example is during the sprint phase users will be able to drag and drop tickets to different areas of the sprint board. 
 
-# Capstone MVP (Minimum Viable Product with a 2 week deadline)
+# Capstone MVP (minimum viable product with a 2 week deadline)
 - User can create an account and login
 - Once the user is logged in they will be able to create a new project
 - Project Managers can assign other users to projects
@@ -16,7 +16,7 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - The ticket will be removed from the issue section of the project view
 - Assigned members or project managers can edit an issue
 
-# Stretch Goals / Future plans
+# Stretch goals / future plans
 - Project users can comment on an issue
 - When a user completes the ticket or fixes the issue they can mark it as complete.
 - Once a ticket has been marked as complete the user in charge of the project can review and confirm that the issue is fixed. 
