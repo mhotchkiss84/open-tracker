@@ -189,10 +189,26 @@ namespace open_tracker.Controllers
         }
         //GET: Get a list of all users so the user can add members
         //TODO: Filter so that members already on the project are not shown?
-        public async Task<IActionResult> AddMembers(int? id)
+        public async Task<IActionResult> AddMembers(int? id, string SearchString)
         {
-            return View(await _context.Users.ToListAsync());
+            ViewData["CurrentFilter"] = SearchString;
+            var users = from u in _context.Users
+                        select u;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                users = users.Where(u => u.LastName.Contains(SearchString)
+                                       || u.FirstName.Contains(SearchString));
+            }
+
+            //View needs changed
+            return View(users);
+            //return View(await _context.Users.ToListAsync());
             //return View(Members);
+        }
+        //GET: Search for members
+        public IActionResult Search(string SearchString)
+        {
+            return Content($"{SearchString}");
         }
 
     }

@@ -5,12 +5,20 @@
 }
 
 <h1>Add Members</h1>
-<div >
-<form class="form-inline mt-4 mb-3" id="member-search-bar">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search users" aria-label="Search">
-    <button class="btn btn-primary btn-rounded btn-sm my-0" type="submit">Search</button>
-</form>
+
+<form asp-action="AddMembers" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary btn-rounded btn-sm" /> |
+            <a asp-action="AddMembers">Back to Full List</a>
+        </p>
     </div>
+</form>
+
+@*<label asp-for="Name" class="control-label"></label>
+<input asp-for="Name" class="form-control" />
+<span asp-validation-for="Name" class="text-danger"></span>*@
 
 <h4>All users </h4>
 
