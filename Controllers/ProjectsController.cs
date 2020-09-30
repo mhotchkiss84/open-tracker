@@ -65,7 +65,7 @@ namespace open_tracker.Controllers
                 await _context.SaveChangesAsync();
                 ProjectMembers projectmembers = new ProjectMembers() {
                     ProjectId = projects.ProjectId,
-                    ProjectMemberId = user.Id,
+                    UserId = user.Id,
                     IsCreator = true,
                     User = user
                 };
@@ -165,25 +165,11 @@ namespace open_tracker.Controllers
         {
             var user = await GetCurrentUserAsync();
 
-
-            //var applicationDbContext = _context.Order.Include(o => o.PaymentType).Include(o => o.User).Where(o => o.User == user);
-
             var ProjectMembers = _context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == id);
-
-            //var ProjectMembers = await _context.ProjectMembers
-            //    .Include(pm => pm.ProjectId)
-            //    .Include(pm => pm.ProjectMemberId)
-            //    .Include(pm => pm.User)
-            //    .ThenInclude(m => m.User)
-            //    .FirstOrDefaultAsync(pm => pm.User == user && m.Id == null);
 
 
             //TODO: Add this later for error handling. All projects should have one member since the project creator is automatically assigned to the project
-            //if (ProjectMembers == null)
-            //{
-            //    //TODO: Create and change to projects own error view
-            //    return View("OrderNotFoundErrorView");
-            //}
+
 
             return View(ProjectMembers);
         }
@@ -205,11 +191,31 @@ namespace open_tracker.Controllers
             //return View(await _context.Users.ToListAsync());
             //return View(Members);
         }
-        //GET: Search for members
-        public IActionResult Search(string SearchString)
+        //POST: Add member to project
+        // Need user id and project ID
+        // POST: Projects/Create
+        public async Task<IActionResult> AddMember(string id, int ProjectId)
         {
-            return Content($"{SearchString}");
-        }
+            if (ModelState.IsValid)
+            {
+                var users = from u in _context.Users
+                            select u;
+                var UserIdToString = id;
+                var user = users.Where(u => u.Id.Contains(UserIdToString));
 
+                ProjectMembers projectmembers = new ProjectMembers() // Change to add members?
+                {
+                    ProjectId = ProjectId,
+                    IsCreator = false,
+                    UserId = id
+                };
+                _context.Add(projectmembers); // Change to add member / project members
+                await _context.SaveChangesAsync(); // Posts 
+                //return RedirectToAction(nameof(ProjectMembers(1));
+                //TODO: Find out how to pass the other parameter into the AddMembers Method or redirect to a success page and then have the option to add more members or go back to the members page.
+                //TODO: Ensure all button operations work correctly
+            }
+            return View();
+        }
     }
     }

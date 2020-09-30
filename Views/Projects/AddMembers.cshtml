@@ -38,14 +38,15 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Details" asp-route-id="">@Html.DisplayFor(modelItem => item.FirstName)</a>
+                    @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="">@Html.DisplayFor(modelItem => item.LastName)</a>
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
                     |
-                    <a asp-action="Delete" asp-route-id="">Add</a>
+                    <a asp-action="AddMember" asp-route-id="@item.Id" asp-route-ProjectId="@Context.Request.RouteValues["id"]">Add</a>
+                    @*<a asp-action="Edit" asp-route-id="10" asp-route-foo="bar">Edit</a>*@
                 </td>
             </tr>
         }
