@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using open_tracker.Data;
 using open_tracker.Models;
@@ -20,7 +21,7 @@ namespace open_tracker.Controllers
             _context = context;
             _userManager = userManager;
         }
-     private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Projects
         public async Task<IActionResult> Index()
         {
@@ -174,12 +175,16 @@ namespace open_tracker.Controllers
             return View(ProjectMembers);
         }
         //GET: Get a list of all users so the user can add members
-        //TODO: Filter so that members already on the project are not shown?
+        //TODO: Filter so that members already on the project are not shown!
         public async Task<IActionResult> AddMembers(int? id, string SearchString)
         {
             ViewData["CurrentFilter"] = SearchString;
             var users = from u in _context.Users
                         select u;
+            var projectmembers = from pm in _context.ProjectMembers
+                                 select pm;
+            //foreach
+            //if (projectmembers == users.)
             if (!String.IsNullOrEmpty(SearchString))
             {
                 users = users.Where(u => u.LastName.Contains(SearchString)
@@ -191,6 +196,9 @@ namespace open_tracker.Controllers
             //return View(await _context.Users.ToListAsync());
             //return View(Members);
         }
+
+        
+
         //POST: Add member to project
         // Need user id and project ID
         // POST: Projects/Create
@@ -211,11 +219,27 @@ namespace open_tracker.Controllers
                 };
                 _context.Add(projectmembers); // Change to add member / project members
                 await _context.SaveChangesAsync(); // Posts 
-                //return RedirectToAction(nameof(ProjectMembers(1));
-                //TODO: Find out how to pass the other parameter into the AddMembers Method or redirect to a success page and then have the option to add more members or go back to the members page.
+                return View(AddedMemberSuccessfully(ProjectId, UserIdToString));
+                //return RedirectToAction(nameof(AddedMemberSuccessfully(ProjectId, UserIdToString));
+                //return RedirectToAction("AddedMemberSuccessfully", new { ProjectId = ProjectId, UserId = UserIdToString });
                 //TODO: Ensure all button operations work correctly
             }
             return View();
         }
+        public async Task<IActionResult> AddedMemberSuccessfully(int ProjectId, string UserId)
+        {
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == ProjectId);
+            //var user = await _context.Users
+            //    .FirstOrDefaultAsync(u => u.Id == UserId);
+            //TempData["FirstName"] = user.FirstName;
+            //TempData["LastName"] = user.LastName;
+            //TempData["ProjectName"] = project.Name;
+            return View(project);
+        }
     }
-    }
+}
+//TODO: Go through this controller and comment where needed.
+//TODO: Don't over think or over do anything and just never get a job with C#. 
+
+
