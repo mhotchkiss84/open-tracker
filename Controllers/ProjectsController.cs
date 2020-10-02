@@ -237,9 +237,46 @@ namespace open_tracker.Controllers
             //TempData["ProjectName"] = project.Name;
             return View();
         }
+        //TODO: Pass in userId and Project ID or whole object
+        //TODO: Pass user into this part as well to show their name on the confirm remove page. 
+        public async Task<IActionResult> ConfirmRemoveUser(int id, int ProjectId)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            //TODO: Add a left join for users
+            //var innerJoin = from m in _context.Movie
+            //                join md in _context.MovieDirector on m.MovieDirectorId equals md.Id
+            //                select new { m.Title, md.Name };
+            //var ProjectMembers = await _context.ProjectMembers
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            var UserIdToString = id.ToString();
+            var ProjectMembers = await _context.ProjectMembers
+            .Include(u => u.User)
+            .Where(pm => pm.Id == ProjectId && pm.UserId == UserIdToString)
+            .FirstOrDefaultAsync(pm => pm.ProjectId == id);
+            //.Include(o => o.User);
+            if (ProjectMembers == null)
+            {
+                return NotFound();
+            }
+            return View(ProjectMembers);
+        }
+        // POST: Projects/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveUserConfirmed(int id)
+        {
+            var projects = await _context.Projects.FindAsync(id);
+            _context.Projects.Remove(projects);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 //TODO: Go through this controller and comment where needed.
-//TODO: Don't over think or over do anything and just never get a job with C#. 
+//TODO: Fix buttons in AddMember.cshtml
+//TODO: Fix all buttons that need it and double check all paths
 
 

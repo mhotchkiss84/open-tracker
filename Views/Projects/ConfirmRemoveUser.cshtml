@@ -1,0 +1,13 @@
+﻿@model open_tracker.Models.ProjectMembers
+
+@{
+    ViewData["Title"] = "Confirm Removal";
+}
+
+<h1>Confirmation</h1>
+
+@*@ var item in Mode*@
+<p>Are you sure that you wish to remove ) </p>
+
+<p>Are you sure that you wish to remove @Html.DisplayFor(modelItem => modelItem.User.FirstName) @Html.DisplayFor(modelItem => modelItem.User.LastName)</p>
+<a asp-action="ConfirmRemoveUser" asp-route-id="@Model.ProjectId">Remove</a>

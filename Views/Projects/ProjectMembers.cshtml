@@ -24,14 +24,15 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.User.FirstName)</a>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ProjectId">@Html.DisplayFor(modelItem => item.User.LastName)</a>
+                    @Html.DisplayFor(modelItem => item.User.LastName)
                 </td>
                 <td>
-                    |
-                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Remove</a>
+                    @*asp-route-ProjectId="@item.ProjectId"*@
+                    @*@item.User.Id*@
+                    <a asp-action="ConfirmRemoveUser" asp-route-id="@item.UserId" asp-route-ProjectId="@item.ProjectId">Remove</a>
                 </td>
             </tr>
         }
