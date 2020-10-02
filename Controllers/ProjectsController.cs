@@ -254,8 +254,8 @@ namespace open_tracker.Controllers
             var UserIdToString = id.ToString();
             var ProjectMembers = await _context.ProjectMembers
             .Include(u => u.User)
-            .Where(pm => pm.Id == ProjectId && pm.UserId == UserIdToString)
-            .FirstOrDefaultAsync(pm => pm.ProjectId == id);
+            .Where(pm => pm.Id == id)
+            .FirstOrDefaultAsync(pm => pm.Id == id);
             //.Include(o => o.User);
             if (ProjectMembers == null)
             {
@@ -264,14 +264,22 @@ namespace open_tracker.Controllers
             return View(ProjectMembers);
         }
         // POST: Projects/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveUserConfirmed(int id)
         {
-            var projects = await _context.Projects.FindAsync(id);
-            _context.Projects.Remove(projects);
+            //TODO: Do a where pm.UserId = id or use the project member id so pm.Id
+            var projectmember = await _context.ProjectMembers.FindAsync(id);
+            var redirectId = projectmember.ProjectId;
+            _context.ProjectMembers.Remove(projectmember);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Details(redirectId));
+            //return RedirectToAction()
+            return RedirectToAction("ProjectMembers", new { id = redirectId });
+
+            //TODO: Need to open the Details view and pass it the id for the parameter
+            //return View("ProjectMembers", redirectId);
+            //return View(Details(redirectId));
         }
     }
 }

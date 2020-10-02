@@ -6,8 +6,6 @@
 
 <h1>Confirmation</h1>
 
-@*@ var item in Mode*@
-<p>Are you sure that you wish to remove ) </p>
-
-<p>Are you sure that you wish to remove @Html.DisplayFor(modelItem => modelItem.User.FirstName) @Html.DisplayFor(modelItem => modelItem.User.LastName)</p>
-<a asp-action="ConfirmRemoveUser" asp-route-id="@Model.ProjectId">Remove</a>
+<p>Are you sure that you wish to remove @Html.DisplayFor(modelItem => modelItem.User.FirstName) @Html.DisplayFor(modelItem => modelItem.User.LastName)?</p>
+<a asp-controller="Projects" asp-action="RemoveUserConfirmed" asp-route-id="@Model.Id" class="btn btn-danger btn-rounded btn-sm ml-2">Remove</a>
+<a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-outline-warning btn-rounded btn-sm ml-2">Cancel</a>

@@ -32,7 +32,7 @@
                 <td>
                     @*asp-route-ProjectId="@item.ProjectId"*@
                     @*@item.User.Id*@
-                    <a asp-action="ConfirmRemoveUser" asp-route-id="@item.UserId" asp-route-ProjectId="@item.ProjectId">Remove</a>
+                    <a asp-action="ConfirmRemoveUser" asp-route-id="@item.Id">Remove</a>
                 </td>
             </tr>
         }
