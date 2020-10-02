@@ -235,7 +235,7 @@ namespace open_tracker.Controllers
             //TempData["FirstName"] = user.FirstName;
             //TempData["LastName"] = user.LastName;
             //TempData["ProjectName"] = project.Name;
-            return View(project);
+            return View();
         }
     }
 }

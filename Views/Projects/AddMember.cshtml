@@ -1,4 +1,4 @@
-﻿@model IEnumerable<open_tracker.Models.Projects>
+﻿@*@model IEnumerable<open_tracker.Models.Projects>*@
 
 @{
     ViewData["Title"] = "Success";
@@ -10,7 +10,7 @@
         <p>@TempData["FirstName"] @TempData["LastName"] was successfully added to @TempData["ProjectName"]</p>
     </div>*@
 
-@Html.DisplayNameFor(model => model.Name)
+@*@Html.DisplayNameFor(model => model.Name)*@
 
 <a asp-action="Create" asp-route-id=" class="btn btn-success btn-rounded btn-sm mt-3 mb-3">Add more members</a>
 <a asp-action="Create" class="btn btn-success btn-rounded btn-sm mt-3 mb-3">Return to project details</a>
