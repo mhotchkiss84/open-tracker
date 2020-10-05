@@ -23,8 +23,8 @@ namespace open_tracker.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var user = await GetCurrentUserAsync();
-            //TODO: Make details button pass in the project id 
             //TODO: Is this going to include all/whole issue objects? Also change the pm to something else
+            //TODO: Once create issue is working test this
             var issues = _context.Issues.Include(i => i).Where(pm => pm.ProjectId == id);
             return View(issues);
             //return View(await _context.Issues.ToListAsync());
