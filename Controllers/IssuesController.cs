@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using open_tracker.Data;
 using open_tracker.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -51,6 +53,7 @@ namespace open_tracker.Controllers
         // GET: Issues/Create
         public IActionResult Create()
         {
+            ViewData["PriorityId"] = new SelectList(_context.Priority, "PriorityId", "PriorityName");
             return View();
         }
 
@@ -58,16 +61,39 @@ namespace open_tracker.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IssueId,ProjectId,CreatedByUserId,PriorityId,IsActive,IsCompleted,IsReviewed")] Issues issues)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("PriorityId, ProjectId, Title, Description")] Issues issues)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(issues);
+            //if (ModelState.IsValid)
+            //{
+                var user = await GetCurrentUserAsync();
+                Issues issue = new Issues()
+                {
+                    ProjectId = issues.ProjectId,
+                    UserId = user.Id,
+                    PriorityId = issues.PriorityId,
+                    IsActive = true,
+                    IsCompleted = false,
+                    IsReviewed = false,
+                    Description = issues.Description,
+                    Title = issues.Title,
+                    CreatorId = user.Id
+                };
+                //IssueId, CreatedByUserId,PriorityId,IsActive,IsCompleted,IsReviewed
+                _context.Add(issue);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(issues);
+
+            //var projects = await _context.Projects.FindAsync(issues.ProjectId);
+
+            //var project = _context.Projects.Include(i => i).Where(pm => pm.ProjectId == issue.ProjectId);
+            //var IndexId = Int32.Parse(projects.ProjectId);
+
+            //var anothertemp = id.ToString();
+            //var TempRedirectString = issue.ProjectId;
+            //var RedirectInt = Int32.Parse(TempRedirectString);
+            return RedirectToAction("Index", new { id = issue.ProjectId });
+            //}
+            //return View(issues);
         }
 
         // GET: Issues/Edit/5

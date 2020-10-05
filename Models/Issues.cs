@@ -13,6 +13,8 @@ namespace open_tracker.Models
         public ApplicationUser Creator { get; set; }
         public string UserId { get; set; }
         [Required]
+        public string CreatorId { get; set; }
+        [Required]
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }

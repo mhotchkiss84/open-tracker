@@ -5,7 +5,7 @@
 <h1>Issues</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Create New</a>
 </p>
 <table class="table">
     <thead>
