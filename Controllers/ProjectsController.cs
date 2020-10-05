@@ -241,10 +241,6 @@ namespace open_tracker.Controllers
         //TODO: Pass user into this part as well to show their name on the confirm remove page. 
         public async Task<IActionResult> ConfirmRemoveUser(int id, int ProjectId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
             //TODO: Add a left join for users
             //var innerJoin = from m in _context.Movie
             //                join md in _context.MovieDirector on m.MovieDirectorId equals md.Id
