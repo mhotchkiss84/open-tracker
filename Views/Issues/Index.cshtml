@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<open_tracker.Models.Issues>
 
-@{ ViewData["Title"] = "Index"; }
+@{ ViewData["Title"] = "Issues"; }
 
-<h1>Index</h1>
+<h1>Issues</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -11,54 +11,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProjectId)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriorityId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsCompleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsReviewed)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProjectId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UserId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PriorityId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsActive)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsCompleted)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsReviewed)
-    </td>
-    <td>
-        <a asp-action="Edit" asp-route-id="@item.IssueId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.IssueId">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.IssueId">Delete</a>
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IssueId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IssueId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IssueId">Delete</a>
+            </td>
+        </tr>
 }
     </tbody>
 </table>

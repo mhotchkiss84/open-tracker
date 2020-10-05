@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using open_tracker.Data;
 using open_tracker.Models;
@@ -10,16 +11,23 @@ namespace open_tracker.Controllers
     public class IssuesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public IssuesController(ApplicationDbContext context)
+        public IssuesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Issues
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            return View(await _context.Issues.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            //TODO: Make details button pass in the project id 
+            //TODO: Is this going to include all/whole issue objects? Also change the pm to something else
+            var issues = _context.Issues.Include(i => i).Where(pm => pm.ProjectId == id);
+            return View(issues);
+            //return View(await _context.Issues.ToListAsync());
         }
 
         // GET: Issues/Details/5
