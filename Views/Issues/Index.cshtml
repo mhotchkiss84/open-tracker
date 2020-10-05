@@ -1,11 +1,23 @@
-﻿@model IEnumerable<open_tracker.Models.Issues>
+﻿@using Microsoft.AspNetCore.Identity
+@using open_tracker.Models;
+@using Microsoft.AspNetCore.Http 
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@*@inject UserManager<WebPageUser> UserManager*@
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<open_tracker.Models.Issues>
+
+
 
 @{ ViewData["Title"] = "Issues"; }
 
 <h1>Issues</h1>
 
 <p>
-    <a asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Create New</a>
+    <a class="btn btn-success btn-rounded btn-sm mt-3 mb-3" asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Add Issue</a>
 </p>
 <table class="table">
     <thead>
@@ -21,19 +33,22 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IssueId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IssueId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IssueId">Delete</a>
-            </td>
-        </tr>
-}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.IssueId">Details</a>
+                    @if (UserManager.GetUserId(HttpContextAccessor.HttpContext.User) == item.CreatorId)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.IssueId">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.IssueId">Delete</a>
+                        }     
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
