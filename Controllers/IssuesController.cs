@@ -117,10 +117,7 @@ namespace open_tracker.Controllers
                 {
                     //isProjectManager = true;
                     ViewData["IsProjectManager"] = true;
-                } else
-                {
-                    ViewData["IsProjectManager"] = false;
-                }
+                } 
             }
                 //.Where(u => u.LastName.Contains(SearchString)
                 //                       || u.FirstName.Contains(SearchString));
@@ -146,6 +143,10 @@ namespace open_tracker.Controllers
 
             if (ModelState.IsValid)
             {
+                if(issues.IsReviewed == true)
+                {
+                    issues.IsActive = false;
+                }
                 try
                 {
                     _context.Update(issues);
