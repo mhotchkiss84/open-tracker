@@ -34,6 +34,10 @@ Currently this application is being developed with C#, .Net, Identity framework,
 [Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing) <br />
 [Sprint Board](https://trello.com/b/DCWPUQeD/server-side-capstone) <br />
 
+# Requirements
+[.Net Core](https://dotnet.microsoft.com/intro) <br />  
+[SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) <br /> 
+[Visual Studio Community (or higher)](https://visualstudio.microsoft.com/vs/community/) <br />
 
 # How to install
 This section will be updated when the project meets MVP (minimum viable product)
