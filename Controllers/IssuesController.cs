@@ -105,6 +105,25 @@ namespace open_tracker.Controllers
             }
 
             var issues = await _context.Issues.FindAsync(id);
+            var user = await GetCurrentUserAsync();
+            var projectId = issues.ProjectId;
+            //var projectUsers = await _context.ProjectMembers.FindAsync(projectId);
+            var projectUsers = await _context.ProjectMembers.ToListAsync();
+            //var isProjectManager = false;
+            //ViewData["isProjectManager"] = false;
+            foreach (ProjectMembers mod in projectUsers) 
+            {
+                if(mod.ProjectId == projectId && user.Id == mod.UserId && mod.IsCreator == true)
+                {
+                    //isProjectManager = true;
+                    ViewData["IsProjectManager"] = true;
+                } else
+                {
+                    ViewData["IsProjectManager"] = false;
+                }
+            }
+                //.Where(u => u.LastName.Contains(SearchString)
+                //                       || u.FirstName.Contains(SearchString));
             if (issues == null)
             {
                 return NotFound();
@@ -116,9 +135,10 @@ namespace open_tracker.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IssueId,ProjectId,CreatedByUserId,PriorityId,IsActive,IsCompleted,IsReviewed")] Issues issues)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("IssueId,ProjectId, PriorityId,IsActive,IsCompleted,IsReviewed, Title, Description, CreatorId, UserId, Creator")] Issues issues)
         {
+            //CreatedByUserId,
             if (id != issues.IssueId)
             {
                 return NotFound();
@@ -142,7 +162,7 @@ namespace open_tracker.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", new { id = issues.ProjectId });
             }
             return View(issues);
         }
