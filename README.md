@@ -1,5 +1,5 @@
 # Open Tracker
-This is my Server side capstone for my Full Stack .NET cohort. 
+This is my server side capstone for my Full Stack .NET cohort. 
 
 # Overview
 This application is being made to allow users to be able to have an all in one project management solution instead of relying on multiple third party solutions, or having to pay for a solution. This application is intended to replace the current solutions by providing an open source platform that can be customized based on the users needs. This application solves the need to have to use multiple applications by combining their functionality into a single application.
