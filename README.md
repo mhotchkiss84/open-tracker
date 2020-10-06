@@ -4,7 +4,7 @@ This is my Server side capstone for my Full Stack .NET cohort.
 # Overview
 This application is being made to allow users to be able to have an all in one project management solution instead of relying on multiple third party solutions, or having to pay for a solution. This application is intended to replace the current solutions by providing an open source platform that can be customized based on the users needs. This application solves the need to have to use multiple applications by combining their functionality into a single application.
 
-Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. I have plans later down the line to switch over to React for the front end and use Django for the backend. Due to being on a 2 week time constraint for MVP on this project I ended up going with Entity.
+Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. I have plans later down the line to switch over to React for the front end and use Django for the backend. Due to having a 2 week time constraint for MVP on this project I ended up going with Entity framework. 
 
 # Capstone MVP (minimum viable product with a 2 week deadline)
 - User can create an account and login
