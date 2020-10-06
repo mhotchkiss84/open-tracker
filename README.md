@@ -35,7 +35,7 @@ Currently this application is being developed with C#, .Net, Identity framework,
 [Sprint Board](https://trello.com/b/DCWPUQeD/server-side-capstone) <br />
 
 # Requirements
-[.Net Core](https://dotnet.microsoft.com/intro) <br />  
+[.Net Core](https://dotnet.microsoft.com/intro)
 [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) <br /> 
 [Visual Studio Community (or higher)](https://visualstudio.microsoft.com/vs/community/) <br />
 
