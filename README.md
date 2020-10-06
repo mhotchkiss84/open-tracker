@@ -41,11 +41,16 @@ This section will be updated when the project meets MVP (minimum viable product)
 
 # Currently in development
 - Add TOC (table of contents) to the readme
-- Add a user to the projects team
+- Users can edit issue tickets
+- Project managers can mark an issue as reviewed
+- Project managers can assign a user to an issue
 
 # Updates
 - Updated Readme
 - Login/Register functionality added (need to setup email verification or remove it)
 - Create a project functionality added
 - View project members functionality added
+- Add members to a project with name filter added
+- User create issue/ticket functionality added
+
 
