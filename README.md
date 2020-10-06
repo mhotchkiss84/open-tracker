@@ -46,7 +46,6 @@ This section will be updated when the project meets MVP (minimum viable product)
 - Project managers can assign a user to an issue
 
 # Updates
-- Updated Readme
 - Login/Register functionality added (need to setup email verification or remove it)
 - Create a project functionality added
 - View project members functionality added
