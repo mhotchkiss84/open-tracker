@@ -29,9 +29,11 @@ Currently this application is being developed with C#, .Net, Identity framework,
 - Add project planning to the site i.e. ERD support, Google Docs support, mockups, etc. 
 - Add sprint system
 
-# Planning documentation
+# Planning & sprint board
 [Current ERD (Entity Relationship Diagram)](https://drive.google.com/file/d/1gFTVGgXedhKAeoieMAr1buqYpD_dkQa_/view?usp=sharing) <br />
-[Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing)
+[Mockup](https://drive.google.com/file/d/1Bgsz_MN2uL5L5baHSSGkJ-zrWxvLzQSu/view?usp=sharing) <br />
+[Sprint Board](https://trello.com/b/DCWPUQeD/server-side-capstone) <br />
+
 
 # How to install
 This section will be updated when the project meets MVP (minimum viable product)
