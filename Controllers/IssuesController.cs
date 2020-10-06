@@ -194,7 +194,7 @@ namespace open_tracker.Controllers
             var issues = await _context.Issues.FindAsync(id);
             _context.Issues.Remove(issues);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { id = issues.ProjectId });
         }
 
         private bool IssuesExists(int id)

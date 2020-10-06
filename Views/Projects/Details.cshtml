@@ -6,6 +6,9 @@
 
 <h1>@Html.DisplayFor(model => model.Name)</h1>
 
+<a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Members</a>
+<a asp-action="Index" asp-controller="Issues" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Issues</a>
+
 <div>
     <hr />
     <dl class="row">
@@ -21,18 +24,11 @@
         <dd class="col-sm-10">
             <a href="@Html.DisplayFor(model => model.Repo)"> @Html.DisplayFor(model => model.Repo)</a>
         </dd>
-        <dt class="col-sm-2">
-            <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-primary btn-rounded btn-sm ml-1 mt-1">Members</a>
-            <a asp-action="Index" asp-controller="Issues" asp-route-id="@Model.ProjectId" class="btn btn-primary btn-rounded btn-sm ml-1 mt-1">Issues</a>
-        </dt>
-        <dd class=" col-sm-10">
-        </dd>
-        <dt>
     </dl>
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-primary btn-rounded btn-sm ml-1 mt-1">Back</a>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-success btn-rounded btn-sm mt-1">Edit</a>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-danger btn-rounded btn-sm mt-1">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary btn-rounded btn-sm ml-1 mt-1">Back</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-1">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>
 </div>

@@ -6,7 +6,7 @@
 
 <h1>Project Members</h1>
 
-<a asp-action="AddMembers" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-success btn-rounded btn-sm mt-3 mb-3">Add a new member</a>
+<a asp-action="AddMembers" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-dark btn-rounded btn-sm mt-3 mb-3">Add a new member</a>
 
 <table class="table">
     <thead>
@@ -32,7 +32,7 @@
                 <td>
                     @*asp-route-ProjectId="@item.ProjectId"*@
                     @*@item.User.Id*@
-                    <a asp-action="ConfirmRemoveUser" asp-route-id="@item.Id">Remove</a>
+                    <a class="btn btn-outline-danger btn-rounded btn-sm ml-2" asp-action="ConfirmRemoveUser" asp-route-id="@item.Id">Remove</a>
                 </td>
             </tr>
         }
@@ -40,5 +40,5 @@
 </table>
 
 <div>
-    <a asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-primary btn-rounded btn-sm ml-2">Back</a>
+    <a asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-secondary btn-rounded btn-sm ml-2">Back</a>
 </div>
