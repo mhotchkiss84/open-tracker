@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using open_tracker.Data;
 
 namespace open_tracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201007151553_FixingProjectMembers")]
+    partial class FixingProjectMembers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,7 +243,7 @@ namespace open_tracker.Migrations
                     b.Property<int>("IssueId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IssuesIssueId")
+                    b.Property<int?>("IssuesIssueId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -460,9 +462,7 @@ namespace open_tracker.Migrations
 
                     b.HasOne("open_tracker.Models.Issues", null)
                         .WithMany("IssueAssignedMembers")
-                        .HasForeignKey("IssuesIssueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IssuesIssueId");
                 });
 
             modelBuilder.Entity("open_tracker.Models.IssueComments", b =>

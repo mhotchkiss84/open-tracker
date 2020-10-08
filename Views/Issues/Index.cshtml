@@ -17,16 +17,16 @@
 <h1>Issues</h1>
 
 <p>
-    <a class="btn btn-success btn-rounded btn-sm mt-3 mb-3" asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Add Issue</a>
+    <a class="btn btn-dark btn-rounded btn-sm mt-3 mb-3" asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Add Issue</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Issue
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Priority
             </th>
         </tr>
     </thead>
@@ -35,20 +35,20 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    <a asp-action="Details" asp-route-id="@item.IssueId">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.IssueId">Details</a>
+                @*<td>
                     @if (UserManager.GetUserId(HttpContextAccessor.HttpContext.User) == item.CreatorId)
                         {
-                            <a asp-action="Edit" asp-route-id="@item.IssueId">Edit</a>
                             <a asp-action="Delete" asp-route-id="@item.IssueId">Delete</a>
                         }     
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>
 </table>
+
+<a asp-action="Details" asp-controller="Projects" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-secondary btn-rounded btn-sm ml-2">Back</a>

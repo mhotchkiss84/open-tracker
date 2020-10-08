@@ -11,5 +11,7 @@ namespace open_tracker.Models
         [Required]
         public ApplicationUser AssignedMember { get; set; }
         public string UserId { get; set; }
+        public string AssignedMemberId { get; set; }
+        public int IssuesIssueId { get; set; }
     }
 }
