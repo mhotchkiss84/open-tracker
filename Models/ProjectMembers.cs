@@ -13,5 +13,6 @@ namespace open_tracker.Models
         [Required]
         public string UserId { get; set; }
         public bool IsCreator { get; set; }
+        public int ProjectsProjectId { get; set; }
     }
 }

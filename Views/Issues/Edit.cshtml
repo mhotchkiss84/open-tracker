@@ -4,7 +4,6 @@
 
 <h1>Edit</h1>
 
-<h4>Issues</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -27,15 +26,14 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+            <label asp-for="PriorityId" class="control-label">Priority</label>
+            <input asp-for="PriorityId" class="form-control" />
+            <span asp-validation-for="PriorityId" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
-                <label asp-for="PriorityId" class="control-label">Priority</label>
-                <input asp-for="PriorityId" class="form-control" />
-                <span asp-validation-for="PriorityId" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
-                </label>
+                <label class="control-label">Priority</label>
+                <select id="PriorityId" asp-for="PriorityId" class="form-control" asp-items="ViewBag.PriorityId"></select>
             </div>
             @if (ViewBag.IsProjectManager == true)
             {
@@ -44,21 +42,21 @@
                         <input class="form-check-input" asp-for="IsReviewed" /> @Html.DisplayNameFor(model => model.IsReviewed)
                     </label>
                 </div>
-
-            }
-            @if (ViewBag.IsProjectManager == false)
-            {
                 <div hidden class="form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="IsReviewed" /> @Html.DisplayNameFor(model => model.IsReviewed)
                     </label>
                 </div>
-
             }
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-outline-success btn-rounded btn-sm" />
-            <a asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-outline-secondary btn-rounded btn-sm">Cancel</a>
-        </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success btn-rounded btn-sm" />
+                <a asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-outline-secondary btn-rounded btn-sm">Cancel</a>
+            </div>
         </form>
     </div>
 </div>

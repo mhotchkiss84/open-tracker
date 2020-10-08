@@ -2,18 +2,11 @@
 
 @{ ViewData["Title"] = "Details"; }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Issues</h4>
+    <h4 class="mt-4">@Html.DisplayFor(model => model.Title)</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -24,15 +17,26 @@
             Created by
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
+            @*@Html.DisplayFor(model => model.UserId)*@
+            @ViewBag.FirstName @ViewBag.LastName
         </dd>
         <dt class="col-sm-2">
             Priority
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PriorityId)
+            @ViewBag.Priority
+        </dd>
+        <dt class="col-sm-2">
+            Assigned
+        </dt>
+        <dd class="ml-3">
+            @if (ViewBag.AssignedFirstName != null)
+            {
+                @($"{ViewBag.AssignedFirstName} {ViewBag.AssignedLastName}")
+            }
         </dd>
     </dl>
+    <a class="btn btn-dark btn-rounded btn-sm mb-3" asp-action="AddMember" asp-route-id="@Model.IssueId">Manage Assigned Members</a>
 </div>
 <div>
     <a class="btn btn-outline-secondary btn-rounded btn-sm" asp-action="Edit" asp-route-id="@Model.IssueId">Edit</a>

@@ -42,6 +42,21 @@ namespace open_tracker.Controllers
 
             var issues = await _context.Issues
                 .FirstOrDefaultAsync(m => m.IssueId == id);
+            var users = await _context.Users.FirstOrDefaultAsync(m => m.Id == issues.UserId);
+            var priority = await _context.Priority.FirstOrDefaultAsync(m => m.PriorityId == issues.PriorityId);
+            var assignedMembers = await _context.IssueAssignedMembers.FirstOrDefaultAsync(m => m.IssueId == id);
+            if(assignedMembers != null)
+            {
+                var assignedNames = await _context.Users.FirstOrDefaultAsync(m => m.Id == assignedMembers.UserId);
+                ViewData["AssignedFirstName"] = assignedNames.FirstName;
+                ViewData["AssignedLastName"] = assignedNames.LastName;
+            }
+            //var user = _context.Users.Where(pm => pm.Id == issues.UserId);
+            ViewData["FirstName"] = users.FirstName;
+            ViewData["LastName"] = users.LastName;
+            ViewData["Priority"] = priority.PriorityName;
+            
+
             if (issues == null)
             {
                 return NotFound();
@@ -111,6 +126,16 @@ namespace open_tracker.Controllers
             var projectUsers = await _context.ProjectMembers.ToListAsync();
             //var isProjectManager = false;
             //ViewData["isProjectManager"] = false;
+            ViewData["PriorityId"] = new SelectList(_context.Priority, "PriorityId", "PriorityName");
+            ViewData["Users"] = new SelectList(_context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == issues.ProjectId) ,"User.Id", "User.FirstName", "User.LastName");
+            var TestData = _context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == issues.ProjectId);
+            //var openOrder = await _context.Order
+            //        .Include(o => o.PaymentType)
+            //        .Include(o => o.User)
+            //        .Include(o => o.OrderProducts)
+            //        .ThenInclude(op => op.Product)
+            //        .FirstOrDefaultAsync(o => o.User == user && o.PaymentTypeId == null);
+
             foreach (ProjectMembers mod in projectUsers) 
             {
                 if(mod.ProjectId == projectId && user.Id == mod.UserId && mod.IsCreator == true)
@@ -200,6 +225,42 @@ namespace open_tracker.Controllers
         private bool IssuesExists(int id)
         {
             return _context.Issues.Any(e => e.IssueId == id);
+        }
+        public async Task<IActionResult> AddMember(int id)
+        {
+            var issues = await _context.Issues.FindAsync(id);
+            var user = await GetCurrentUserAsync();
+            var projectId = issues.ProjectId;
+            //var projectUsers = await _context.ProjectMembers.FindAsync(projectId);
+            var projectUsers = await _context.ProjectMembers.ToListAsync();
+            //var isProjectManager = false;
+            //ViewData["isProjectManager"] = false;
+            ViewData["Users"] = new SelectList(_context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == issues.ProjectId), "User.Id", "User.FirstName", "User.LastName");
+            var TestData = _context.ProjectMembers.Include(u => u.User).Where(pm => pm.ProjectId == issues.ProjectId);
+            return View();
+        }
+        public async Task<IActionResult> Assign([Bind("UserId, IssueId")] IssueAssignedMembers issueAssignedMembers)
+        {
+            var issueassignments = await _context.IssueAssignedMembers.FirstOrDefaultAsync(m => m.IssueId == issueAssignedMembers.IssueId);
+            if (issueassignments != null)
+            {
+                _context.IssueAssignedMembers.Remove(issueassignments);
+                await _context.SaveChangesAsync();
+            }
+            
+
+            IssueAssignedMembers issueAssignedMember = new IssueAssignedMembers()
+            {
+                IssueId = issueAssignedMembers.IssueId,
+                IssuesIssueId = issueAssignedMembers.IssueId,
+                UserId = issueAssignedMembers.UserId,
+                AssignedMemberId = issueAssignedMembers.UserId,
+            };
+
+            _context.Add(issueAssignedMember);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", new { id = issueAssignedMembers.IssueId });
         }
     }
 }

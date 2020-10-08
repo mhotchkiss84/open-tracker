@@ -1,0 +1,20 @@
+﻿@model open_tracker.Models.IssueAssignedMembers
+
+<h4>Assign a member to this issue</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IssueId" value="@Context.Request.RouteValues["id"]"/>
+            <div class="form-group">
+                <select id="UserId" asp-for="UserId" class="form-control" asp-items="ViewBag.Users"></select>
+                @*@($"{Model.address} {Model.city}")*@
+            </div>
+            <div class="form-group">
+                <input asp-action="Assign" asp-route-id="@Context.Request.RouteValues["id"]" type="submit" value="Assign" class="btn btn-outline-success btn-rounded btn-sm" />
+                <a asp-action="Details" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-outline-secondary btn-rounded btn-sm">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -68,7 +68,8 @@ namespace open_tracker.Controllers
                     ProjectId = projects.ProjectId,
                     UserId = user.Id,
                     IsCreator = true,
-                    User = user
+                    User = user,
+                    ProjectsProjectId = projects.ProjectId
                 };
                 _context.Add(projectmembers);
                 await _context.SaveChangesAsync();
