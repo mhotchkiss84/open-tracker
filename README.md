@@ -48,6 +48,7 @@ This section will be updated when the project meets MVP (minimum viable product)
 # Currently in development
 - Add TOC (table of contents) to the readme
 - Conditional rendering of various components
+- Viewing of issue history (previously completed issues)
 
 # Updates
 - Login/Register functionality added (need to setup email verification or remove it)
@@ -56,7 +57,7 @@ This section will be updated when the project meets MVP (minimum viable product)
 - Add members to a project with name filter added
 - User create issue/ticket functionality added
 - Users can edit issue tickets and mark as complete
-- Project managers can mark an issue as reviewed
+- Project managers can mark an issue as reviewed which removes it from the active issue list
 - Project managers can assign a user to an issue
 
 
