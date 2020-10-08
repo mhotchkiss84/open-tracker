@@ -4,7 +4,7 @@ This is my server side capstone for my Full Stack .NET cohort.
 # Overview
 This application is being made to allow users to be able to have an all in one project management solution instead of relying on multiple third party solutions, or having to pay for a solution. This application is intended to replace the current solutions by providing an open source platform that can be customized based on the users needs. This application solves the need to have to use multiple applications by combining their functionality into a single application.
 
-Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. I have plans later down the line to switch over to React for the front end and use Django for the backend. However due to having a 2 week time constraint for MVP on this project I ended up going with Entity framework. 
+Currently this application is being developed with C#, .Net, Identity framework, and Entity framework. With the functionality and end user experience I want I was going to use React with an API done in Entity. However due to having a 2 week time constraint for MVP on this project I ended up going with Entity framework for the whole project. Once my capstone is finished on the 9th of October 2020, I will be starting it over using React, Django, and PostgreSQL. The new projects repository has been created, however I haven't had much time to work on it yet due to the job search and working on this project for my capstone. If you are interested in viewing, keeping up with, or contributing to it you can view it [here](https://github.com/mhotchkiss84/open-source-project-management) <br />
 
 # Capstone MVP (minimum viable product with a 2 week deadline)
 - User can create an account and login
