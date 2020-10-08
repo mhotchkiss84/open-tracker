@@ -15,6 +15,7 @@ namespace open_tracker.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        //public ProjectMembers ProjectMembers {get;set;}
         //public virtual ICollection<ProjectMembers> ProjectMembers { get; set; }
         //public virtual ICollection<Issues> Issues { get; set; }
         //public virtual ICollection<IssueAssignedMembers> IssueAssignedMembers { get; set; }

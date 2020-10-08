@@ -209,23 +209,57 @@ namespace open_tracker.Controllers
         //TODO: Filter so that members already on the project are not shown!
         public async Task<IActionResult> AddMembers(int? id, string SearchString)
         {
-            ViewData["CurrentFilter"] = SearchString;
-            var users = from u in _context.Users
-                        select u;
-            var projectmembers = from pm in _context.ProjectMembers
-                                 select pm;
-            //foreach
-            //if (projectmembers == users.)
-            if (!String.IsNullOrEmpty(SearchString))
+            if (String.IsNullOrEmpty(SearchString))
             {
+                var ProjectMembers = await _context.ProjectMembers
+        .Where(pm => pm.ProjectId == id)
+        .ToListAsync();
+                //List<ApplicationUser> UserList = new List<ApplicationUser>() { };
+                List<string> IdList = new List<string>() { };
+                foreach (ProjectMembers element in ProjectMembers)
+                {
+                    IdList.Add(element.UserId);
+                }
+
+                ViewData["CurrentFilter"] = SearchString;
+                var users = from u in _context.Users
+                            select u;
+                List<ApplicationUser> finalList = new List<ApplicationUser>() { };
+                foreach (string element in IdList)
+                {
+                    foreach (ApplicationUser newelement in users)
+                    {
+                        if (newelement.Id != element)
+                        {
+                                finalList.Add(newelement);
+                        } break;
+                    }
+                }
+                List<ApplicationUser> LetsHopeSo = new List<ApplicationUser>() { };
+                foreach(string element in IdList)
+                {
+                    
+                }
+                IEnumerable<ApplicationUser> trimmedFinal = finalList.Distinct();
+                return View(trimmedFinal);
+            } else
+            {
+                var users = from u in _context.Users
+                            select u;
                 users = users.Where(u => u.LastName.Contains(SearchString)
                                        || u.FirstName.Contains(SearchString));
+                return View(users);
             }
+            
 
-            //View needs changed
-            return View(users);
-            //return View(await _context.Users.ToListAsync());
-            //return View(Members);
+            //if (!String.IsNullOrEmpty(SearchString))
+            //{
+            //    finalList = (List<ApplicationUser>)finalList.Where(u => u.LastName.Contains(SearchString)
+            //                           || u.FirstName.Contains(SearchString));
+            //}
+
+            //return View(finalList);
+
         }
 
         
@@ -246,7 +280,8 @@ namespace open_tracker.Controllers
                 {
                     ProjectId = ProjectId,
                     IsCreator = false,
-                    UserId = id
+                    UserId = id,
+                    ProjectsProjectId = ProjectId
                 };
                 _context.Add(projectmembers); // Change to add member / project members
                 await _context.SaveChangesAsync(); // Posts 
