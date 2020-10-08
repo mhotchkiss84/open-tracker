@@ -27,7 +27,7 @@ namespace open_tracker.Controllers
             var user = await GetCurrentUserAsync();
             //TODO: Is this going to include all/whole issue objects? Also change the pm to something else
             //TODO: Once create issue is working test this
-            var issues = _context.Issues.Include(i => i).Where(pm => pm.ProjectId == id);
+            var issues = _context.Issues.Include(i => i).Where(pm => pm.ProjectId == id).Where(pm => pm.IsActive == true);
             return View(issues);
             //return View(await _context.Issues.ToListAsync());
         }
@@ -242,7 +242,7 @@ namespace open_tracker.Controllers
         public async Task<IActionResult> Assign([Bind("UserId, IssueId")] IssueAssignedMembers issueAssignedMembers)
         {
             var issueassignments = await _context.IssueAssignedMembers.FirstOrDefaultAsync(m => m.IssueId == issueAssignedMembers.IssueId);
-            if (issueassignments != null)
+             if (issueassignments != null)
             {
                 _context.IssueAssignedMembers.Remove(issueassignments);
                 await _context.SaveChangesAsync();

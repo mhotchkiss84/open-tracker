@@ -1,4 +1,11 @@
 ﻿@model open_tracker.Models.Projects
+@using Microsoft.AspNetCore.Identity
+@using open_tracker.Models;
+@using Microsoft.AspNetCore.Http
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "Details";
@@ -9,7 +16,7 @@
 <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Members</a>
 <a asp-action="Index" asp-controller="Issues" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Issues</a>
 
-<div>
+<div class="ml-2">
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -28,7 +35,11 @@
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-secondary btn-rounded btn-sm mt-1">Back</a>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-1">Edit</a>
-    <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary btn-rounded btn-sm mt-1 ml-2">Back</a>
+    @if (ViewBag.IsCreator != null)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-1">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>
+    }
+    @*<a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>*@
 </div>

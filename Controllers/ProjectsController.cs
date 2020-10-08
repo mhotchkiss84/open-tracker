@@ -25,7 +25,31 @@ namespace open_tracker.Controllers
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projects.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            //var projectMembers = await _context.ProjectMembers.ToListAsync();
+            ////ProjectMembers tempMembers = new ProjectMembers() { };
+            //List<int> ProjectIdList = new List<int>();
+            //foreach (ProjectMembers element in projectMembers)
+            //{
+            //    if(user.Id == element.UserId)
+            //    {
+            //        ProjectIdList.Add(element.ProjectId);
+            //    }
+            //}
+            //var projects = await _context.Projects.Where(p =>p.ProjectId == );
+            //Projects UserProjects = new Projects() { };
+            var AnotherTest = await _context.ProjectMembers
+                .Include(pm => pm.Projects)
+                .Where(pm => pm.UserId == user.Id)
+                .ToListAsync();
+            List<Projects> ProjectList = new List<Projects>() { };
+            foreach (ProjectMembers element in AnotherTest)
+            {
+                ProjectList.Add(element.Projects);
+            }
+
+            //return View(await _context.Projects.ToListAsync());
+            return View(ProjectList);
         }
 
         // GET: Projects/Details/5
@@ -35,9 +59,15 @@ namespace open_tracker.Controllers
             {
                 return NotFound();
             }
-
+            var user = await GetCurrentUserAsync();
             var projects = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
+            var projectMembers = await _context.ProjectMembers.FirstOrDefaultAsync(m => m.ProjectId == id);
+            var ProjectMemberIdToString = projectMembers.UserId.ToString();
+            if(user.Id == ProjectMemberIdToString && projectMembers.IsCreator == true)
+            {
+                ViewData["IsCreator"] = true;
+            }
             if (projects == null)
             {
                 return NotFound();
