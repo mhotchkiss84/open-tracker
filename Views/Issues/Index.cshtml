@@ -14,15 +14,15 @@
 
 @{ ViewData["Title"] = "Issues"; }
 
-<h1>Issues</h1>
+<h1 class="mt-5 mb-3 text-center">Issues</h1>
 
 <p>
     <a class="btn btn-dark btn-rounded btn-sm mt-3 mb-3" asp-action="Create" asp-route-id="@Context.Request.RouteValues["id"]">Add Issue</a>
 </p>
-<table class="table">
+<table class="table mr-5">
     <thead>
         <tr>
-            <th>
+            <th class="mr-5">
                 Issue
             </th>
             <th>
@@ -35,7 +35,7 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.IssueId">@Html.DisplayFor(modelItem => item.Title)</a>
+                    <a class="mr-3" asp-action="Details" asp-route-id="@item.IssueId">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -51,4 +51,4 @@
     </tbody>
 </table>
 
-<a asp-action="Details" asp-controller="Projects" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-secondary btn-rounded btn-sm ml-2">Back</a>
+<a asp-action="Details" asp-controller="Projects" asp-route-id="@Context.Request.RouteValues["id"]" class="btn btn-secondary btn-rounded btn-sm ml-1 mt-3">Back</a>

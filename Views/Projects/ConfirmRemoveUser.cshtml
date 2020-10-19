@@ -4,8 +4,11 @@
     ViewData["Title"] = "Confirm Removal";
 }
 
-<h1>Confirmation</h1>
-
-<p>Are you sure that you wish to remove @Html.DisplayFor(modelItem => modelItem.User.FirstName) @Html.DisplayFor(modelItem => modelItem.User.LastName)?</p>
-<a asp-controller="Projects" asp-action="RemoveUserConfirmed" asp-route-id="@Model.Id" class="btn btn-danger btn-rounded btn-sm ml-2">Remove</a>
-<a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-outline-warning btn-rounded btn-sm ml-2">Cancel</a>
+<h1 class="mt-5 mb-3 text-center">Confirmation</h1>
+<div class="mx-auto mt-3">
+    <p class="text-center">Are you sure that you wish to remove @Html.DisplayFor(modelItem => modelItem.User.FirstName) @Html.DisplayFor(modelItem => modelItem.User.LastName)?</p>
+</div>
+<div class="mx-auto text-center mt-3">
+<a asp-controller="Projects" asp-action="RemoveUserConfirmed" asp-route-id="@Model.Id" class="btn btn-danger btn-rounded btn-sm ml-2 text-center mt-3">Remove</a>
+<a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm text-center mt-3">Cancel</a>
+</div>

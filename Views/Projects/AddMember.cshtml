@@ -4,14 +4,16 @@
     ViewData["Title"] = "Success";
 }
 
-<h1>Success</h1>
+<h1 class="mt-5 mb-3 text-center">Added member successfully</h1>
 
 @*<div>
-        <p>@TempData["FirstName"] @TempData["LastName"] was successfully added to @TempData["ProjectName"]</p>
-    </div>*@
+        <p>@ViewBag["FirstName"] @Vie["LastName"] was successfully added to @TempData["ProjectName"]</p>
+</div>*@
 
 @*@Html.DisplayNameFor(model => model.Name)*@
 
 @* Make these functional *@
-<a asp-action="Create" asp-route-id="" class="btn btn-outline-secondary btn-rounded btn-sm mt-3 mb-3">Add more members</a>
-<a asp-action="Create" class="btn btn-outline-success btn-rounded btn-sm mt-3 mb-3">Return to project details</a>
+<div class="mx-auto justify-content-center text-center">
+<a asp-action="AddMembers" asp-route-id="1" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Add more members</a>
+<a asp-action="Details" asp-route-id="1" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Return to project details</a>
+</div>

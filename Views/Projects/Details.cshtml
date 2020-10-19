@@ -11,35 +11,38 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>@Html.DisplayFor(model => model.Name)</h1>
+<h1 class="mt-5 mb-3 text-center">@Html.DisplayFor(model => model.Name)</h1>
 
+<div class="col-md-4 mx-auto mb-3 text-center">
 <a asp-action="ProjectMembers" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Members</a>
 <a asp-action="Index" asp-controller="Issues" asp-route-id="@Model.ProjectId" class="btn btn-dark btn-rounded btn-sm ml-1 mt-3">Issues</a>
-
-<div class="ml-2">
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Repo)
-        </dt>
-        <dd class="col-sm-10">
-            <a href="@Html.DisplayFor(model => model.Repo)"> @Html.DisplayFor(model => model.Repo)</a>
-        </dd>
-    </dl>
 </div>
 
-<div>
-    <a asp-action="Index" class="btn btn-secondary btn-rounded btn-sm mt-1 ml-2">Back</a>
-    @if (ViewBag.IsCreator != null)
-    {
-        <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-1">Edit</a>
-        <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>
-    }
-    @*<a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>*@
-</div>
+<div class="ml-2 mt-3 mb-3">
+    <div class="col-md-4 mx-auto">
+        <dl class="row mt-3 mb-3">
+            <dt class="col-sm-2 mx-auto mt-3 mb-3">
+                Details:
+            </dt>
+            <dd class="col-sm-10 mx-auto mt-3 mb-3">
+                @Html.DisplayFor(model => model.Details)
+            </dd>
+            <dt class="col-sm-2 mx-auto mb-3">
+                Repo:
+            </dt>
+            <dd class="col-sm-10 mx-auto mb-3">
+                <a href="@Html.DisplayFor(model => model.Repo)">@Html.DisplayFor(model => model.Repo)</a>
+            </dd>
+        </dl>
+        </div>
+    </div>
+
+    <div class="mx-auto justify-content-center text-center">
+        <a asp-action="Index" class="btn btn-secondary btn-rounded btn-sm mt-1 mx-auto">Back</a>
+        @if (ViewBag.IsCreator != null)
+        {
+            <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-1 mx-auto">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1 mx-auto">Delete</a>
+        }
+        @*<a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-outline-danger btn-rounded btn-sm mt-1">Delete</a>*@
+    </div>

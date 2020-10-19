@@ -209,47 +209,47 @@ namespace open_tracker.Controllers
         //TODO: Filter so that members already on the project are not shown!
         public async Task<IActionResult> AddMembers(int? id, string SearchString)
         {
-            if (String.IsNullOrEmpty(SearchString))
-            {
-                var ProjectMembers = await _context.ProjectMembers
-        .Where(pm => pm.ProjectId == id)
-        .ToListAsync();
-                //List<ApplicationUser> UserList = new List<ApplicationUser>() { };
-                List<string> IdList = new List<string>() { };
-                foreach (ProjectMembers element in ProjectMembers)
-                {
-                    IdList.Add(element.UserId);
-                }
+        //    if (String.IsNullOrEmpty(SearchString))
+        //    {
+        //        var ProjectMembers = await _context.ProjectMembers
+        //.Where(pm => pm.ProjectId == id)
+        //.ToListAsync();
+        //        //List<ApplicationUser> UserList = new List<ApplicationUser>() { };
+        //        List<string> IdList = new List<string>() { };
+        //        foreach (ProjectMembers element in ProjectMembers)
+        //        {
+        //            IdList.Add(element.UserId);
+        //        }
 
-                ViewData["CurrentFilter"] = SearchString;
-                var users = from u in _context.Users
-                            select u;
-                List<ApplicationUser> finalList = new List<ApplicationUser>() { };
-                foreach (string element in IdList)
-                {
-                    foreach (ApplicationUser newelement in users)
-                    {
-                        if (newelement.Id != element)
-                        {
-                                finalList.Add(newelement);
-                        } break;
-                    }
-                }
-                List<ApplicationUser> LetsHopeSo = new List<ApplicationUser>() { };
-                foreach(string element in IdList)
-                {
+        //        ViewData["CurrentFilter"] = SearchString;
+        //        var users = from u in _context.Users
+        //                    select u;
+        //        List<ApplicationUser> finalList = new List<ApplicationUser>() { };
+        //        foreach (string element in IdList)
+        //        {
+        //            foreach (ApplicationUser newelement in users)
+        //            {
+        //                if (newelement.Id != element)
+        //                {
+        //                        finalList.Add(newelement);
+        //                } break;
+        //            }
+        //        }
+        //        List<ApplicationUser> LetsHopeSo = new List<ApplicationUser>() { };
+        //        foreach(string element in IdList)
+        //        {
                     
-                }
-                IEnumerable<ApplicationUser> trimmedFinal = finalList.Distinct();
-                return View(trimmedFinal);
-            } else
-            {
+        //        }
+        //        IEnumerable<ApplicationUser> trimmedFinal = finalList.Distinct();
+        //        return View(trimmedFinal);
+        //    } else
+        //    {
                 var users = from u in _context.Users
                             select u;
                 users = users.Where(u => u.LastName.Contains(SearchString)
                                        || u.FirstName.Contains(SearchString));
                 return View(users);
-            }
+            //}
             
 
             //if (!String.IsNullOrEmpty(SearchString))
@@ -285,15 +285,18 @@ namespace open_tracker.Controllers
                 };
                 _context.Add(projectmembers); // Change to add member / project members
                 await _context.SaveChangesAsync(); // Posts 
-                return View(AddedMemberSuccessfully(ProjectId, UserIdToString));
+                return View(AddedMemberSuccessfully(ProjectId));
                 //return RedirectToAction(nameof(AddedMemberSuccessfully(ProjectId, UserIdToString));
                 //return RedirectToAction("AddedMemberSuccessfully", new { ProjectId = ProjectId, UserId = UserIdToString });
                 //TODO: Ensure all button operations work correctly
             }
             return View();
         }
-        public async Task<IActionResult> AddedMemberSuccessfully(int ProjectId, string UserId)
+        public async Task<IActionResult> AddedMemberSuccessfully(int ProjectId)
         {
+            var ProjectIdToString = ProjectId.ToString();
+            ViewData["ProjectId"] = ProjectId;
+            //TempData[]
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == ProjectId);
             //var user = await _context.Users
@@ -301,6 +304,8 @@ namespace open_tracker.Controllers
             //TempData["FirstName"] = user.FirstName;
             //TempData["LastName"] = user.LastName;
             //TempData["ProjectName"] = project.Name;
+            //ViewData["FirstName"] = user.FirstName;
+            //ViewData["LastName"] = user.LastName;
             return View();
         }
         //TODO: Pass in userId and Project ID or whole object
