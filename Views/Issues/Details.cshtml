@@ -15,10 +15,11 @@
         }
     </p>
     @*<a class="btn btn-secondary btn-rounded btn-sm" asp-action="Edit" asp-route-id="@Model.IssueId">Edit</a>*@
-    <div class="mt-3">
-        <a class="btn btn-secondary btn-rounded btn-sm" asp-action="Index" asp-route-id="@Model.ProjectId">Back</a>
-        <a class="btn btn-secondary btn-rounded btn-sm" asp-action="Edit" asp-route-id="@Model.IssueId">Edit</a>
-    </div>
+<div class="mt-3">
+    <a class="btn btn-secondary btn-rounded btn-sm" asp-action="Index" asp-route-id="@Model.ProjectId">Back</a>
+    <a class="btn btn-secondary btn-rounded btn-sm" asp-action="Edit" asp-route-id="@Model.IssueId">Edit</a>
+    <a class="btn btn-secondary btn-rounded btn-sm text-center" asp-action="AddMember" asp-route-id="@Model.IssueId">Manage Assigned Members</a>
+</div>
 </div>
 
 
