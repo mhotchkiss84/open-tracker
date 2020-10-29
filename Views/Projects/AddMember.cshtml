@@ -14,6 +14,6 @@
 
 @* Make these functional *@
 <div class="mx-auto justify-content-center text-center">
-<a asp-action="AddMembers" asp-route-id="1" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Add more members</a>
-<a asp-action="Details" asp-route-id="1" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Return to project details</a>
+<a asp-action="AddMembers" asp-route-id="@ViewBag.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Add more members</a>
+<a asp-action="Details" asp-route-id="@ViewBag.ProjectId" class="btn btn-secondary btn-rounded btn-sm mt-3 mb-3 text-center mx-auto">Return to project details</a>
 </div>
